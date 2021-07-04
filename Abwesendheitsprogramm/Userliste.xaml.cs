@@ -25,10 +25,9 @@ namespace Abwesendheitsprogramm
             {
                 List<User> data = await db.GetDataFromDatabase("SELECT * FROM user");
                 User users = new User();
-                data = await db.GetDataFromDatabase("SELECT * FROM user");
                 for (int i = 0; i < data.Count; i++)
                 {
-                    dg.Items.Add(new DataItem { id = data[i].ID.ToString(), name = data[i].Name, istAbwesend = data[i].Abwesend, abwesendSeit = data[i].AbwesendSeit.ToString(), abwesendBis = data[i].AbwesendBis.ToString()});
+                    dg.Items.Add(new DataItem { id = data[i].ID.ToString(), name = data[i].Name, istAbwesend = data[i].Abwesend, abwesendSeit = data[i].AbwesendSeit, abwesendBis = data[i].AbwesendBis});
                 }
             }
             catch (Exception e)

@@ -48,8 +48,8 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
                             string Name = "";
                             string Passwort = "";
                             string abwesend = "";
-                            DateTime? abwesendSeit = null;
-                            DateTime? abwesendBis = null;
+                            string abwesendSeit = null;
+                            string abwesendBis = null;
                             //I know that this is technically quite slow (O(n²)) but I don't know how else I should do it.
                             for (int j = 0; j < dataReader.FieldCount; j++)
                             {
@@ -80,7 +80,7 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
                                 {
                                     if (!dataReader.IsDBNull(j))
                                     {
-                                        abwesendSeit = (DateTime)DateTime.Parse(dataReader.GetDateTime(j).ToString("dd.MM.yyyy"));
+                                       abwesendSeit = dataReader.GetDateTime(j).ToString("dd.MM.yyyy");
                                     }
                                     else
                                     {
@@ -91,7 +91,7 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
                                 {
                                     if (!dataReader.IsDBNull(j))
                                     {
-                                        abwesendBis = (DateTime)DateTime.Parse(dataReader.GetDateTime(j).ToString("dd.MM.yyyy"));
+                                        abwesendBis = dataReader.GetDateTime(j).ToString("dd.MM.yyyy");
                                     }
                                     else
                                     {
@@ -116,12 +116,5 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
                 throw;
             }
         }
-    }
-    class Databaseconnection
-    {
-        public string Server { set; get; }
-        public string Datebase { set; get; }
-        public string UID { set; get; }
-        public string Password { set; get; }
     }
 }
