@@ -1,0 +1,17 @@
+﻿<Window x:Class="Abwesendheitsprogramm.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Abwesendheitsprogramm"
+        mc:Ignorable="d"
+        Title="LogIn" Height="234.375" Width="466.016" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="Benutzername:" HorizontalAlignment="Left" Margin="42,54,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="16"/>
+        <TextBox x:Name="Benutzername" HorizontalAlignment="Left" Height="26" Margin="213,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124" FontFamily="Calibri" FontSize="16"/>
+        <Label Content="Passwort:" HorizontalAlignment="Left" Margin="42,99,0,0" VerticalAlignment="Top" Width="89" FontFamily="Calibri" FontSize="16"/>
+        <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="213,99,0,0" VerticalAlignment="Top" Width="124" Height="26" FontSize="16" FontFamily="Calibri"/>
+        <Button Content="Log in" HorizontalAlignment="Left" Margin="144,151,0,0" VerticalAlignment="Top" Width="137" Height="42" Click="Button_Click"/>
+
+    </Grid>
+</Window>
