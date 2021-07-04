@@ -24,7 +24,11 @@ namespace Abwesendheitsprogramm
             try
             {
                 List<User> data = await db.GetDataFromDatabase("SELECT * FROM user");
-                User users = new User();
+                for (int i = 0; i < data.Count; i++)
+                {
+                    data[i].checkObWiederAnwesend();
+                }
+                data = await db.GetDataFromDatabase("SELECT * FROM user");
                 for (int i = 0; i < data.Count; i++)
                 {
                     dg.Items.Add(new DataItem { id = data[i].ID.ToString(), name = data[i].Name, istAbwesend = data[i].Abwesend, abwesendSeit = data[i].AbwesendSeit, abwesendBis = data[i].AbwesendBis});

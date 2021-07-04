@@ -45,6 +45,7 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
 
         public void checkObWiederAnwesend()
         {
+            if (this.AbwesendBis == null) return;
             if (DateTime.Compare((DateTime)DateTime.Parse(AbwesendBis), DateTime.Now) < 0)
             {
                 this.SetAnwesend();
