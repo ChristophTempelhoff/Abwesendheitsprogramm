@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using Abwesendheitsprogramm.CSharp_Klassen;
 
 namespace Abwesendheitsprogramm.CSharp_Klassen
 {
@@ -12,9 +11,11 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
         public int ID { get; set; }
 
         public string Name { get; set; }
+
         public string Passwort { get; set; }
 
         public bool Abwesend { get; set; }
+
         public string AbwesendSeit { get; set; }
 
         public string AbwesendBis { get; set; }

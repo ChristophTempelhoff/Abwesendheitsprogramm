@@ -20,19 +20,19 @@ namespace Abwesendheitsprogramm
         {
             Database db = new Database();
             List<User> data = await db.GetDataFromDatabase("SELECT * FROM user WHERE name = '" + Benutzername.Text + "'");
-                for (int i = 0; i < data.Count; i++)
+            for (int i = 0; i < data.Count; i++)
+            {
+                if (hashPasswords.CreateMD5(Password.Password.ToString()) == data[i].Passwort)
                 {
-                    if (hashPasswords.CreateMD5(Password.Password.ToString()) == data[i].Passwort)
-                    {
-                        Userliste userliste = new Userliste();
-                        userliste.Show();
-                        this.Close();
+                    Userliste userliste = new Userliste();
+                    userliste.Show();
+                    this.Close();
 
-                        return;
-                    }
+                    return;
                 }
-                MessageBox.Show("Benutzername oder Passwort falsch.");
             }
+            MessageBox.Show("Benutzername oder Passwort falsch.");
+        }
     }
 
     public class hashPasswords
