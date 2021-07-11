@@ -41,54 +41,67 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
                         connection.Open();
                         dataReader = command.ExecuteReader();
                         int i = 0;
+                        int j = 0;
+                        int ID = 0;
+                        string Name = "";
+                        string Passwort = "";
+                        bool abwesend = true;
+                        string abwesendSeit = null;
+                        string abwesendBis = null;
                         List<User> user = new List<User>();
                         while (dataReader.Read())
                         {
-                            int ID = 0;
-                            string Name = "";
-                            string Passwort = "";
-                            bool abwesend = true;
-                            string abwesendSeit = null;
-                            string abwesendBis = null;
-                            //I know that this is technically quite slow (O(n²)) but I don't know how else I should do it.
-                            for (int j = 0; j < dataReader.FieldCount; j++)
+                            if (j == 0)
                             {
-                                if (j == 0)
-                                {
-                                    ID = dataReader.GetInt32(j);
-                                }
-                                if (j == 1)
-                                {
-                                    Name = dataReader.GetString(j);
-                                }
-                                if (j == 2)
-                                {
-                                    Passwort = dataReader.GetString(j);
-                                }
-                                if (j == 3)
-                                {
-                                    if (dataReader.GetString(j) == "0")
-                                    {
-                                        abwesend = false;
-                                    }
-                                }
-                                if (j == 4)
-                                {
-                                    if (dataReader.GetString(j) != "")
-                                    {
-                                        abwesendSeit = dataReader.GetDateTime(j).ToString("dd.MM.yyyy");
-                                    }
-                                }
-                                if (j == 5)
-                                {
-                                    if (dataReader.GetString(j) != "")
-                                    {
-                                        abwesendBis = dataReader.GetDateTime(j).ToString("dd.MM.yyyy");
-                                    }
-                                }
+                                ID = dataReader.GetInt32(j);
+                                j++;
                             }
-                            user.Add(new User { ID = ID, Name = Name, Passwort = Passwort, Abwesend = abwesend, AbwesendSeit = abwesendSeit, AbwesendBis = abwesendBis });
-                            i++;
+                            if (j == 1)
+                            {
+                                Name = dataReader.GetString(j);
+                                j++;
+                            }
+                            if (j == 2)
+                            {
+                                Passwort = dataReader.GetString(j);
+                                j++;
+                            }
+                            if (j == 3)
+                            {
+                                if (dataReader.GetString(j) == "0")
+                                {
+                                    abwesend = false;
+                                }
+                                j++;
+                            }
+                            if (j == 4)
+                            {
+                                if (dataReader.GetString(j) != "")
+                                {
+                                    abwesendSeit = dataReader.GetDateTime(j).ToString("dd.MM.yyyy");
+                                }
+                                j++;
+                            }
+                            if (j == 5)
+                            {
+                                if (dataReader.GetString(j) != "")
+                                {
+                                    abwesendBis = dataReader.GetDateTime(j).ToString("dd.MM.yyyy");
+                                }
+                                j++;
+                            }
+                            if (j == dataReader.FieldCount)
+                            {
+                                user.Add(new User { ID = ID, Name = Name, Passwort = Passwort, Abwesend = abwesend, AbwesendSeit = abwesendSeit, AbwesendBis = abwesendBis });
+                                i++;
+                                ID = 0;
+                                Name = "";
+                                Passwort = "";
+                                abwesend = true;
+                                abwesendSeit = null;
+                                abwesendBis = null;
+                                j = 0;
+                            }
                         }
                         int line = i;
                         int column = dataReader.FieldCount;
