@@ -19,7 +19,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Content="Bearbeiten" HorizontalAlignment="Left" Margin="459,200,0,0" VerticalAlignment="Top" Width="106" Click="Button_Click" Height="37"/>
+        <Button Content="Bearbeiten" HorizontalAlignment="Left" Margin="417,200,0,0" VerticalAlignment="Top" Width="106" Click="Button_Click" Height="37"/>
         <Label Content="ID:" HorizontalAlignment="Left" Margin="409,10,0,0" VerticalAlignment="Top" Height="26" Width="24"/>
         <Label Content="Ist Abwesend:" HorizontalAlignment="Left" Margin="366,50,0,0" VerticalAlignment="Top" Height="26" Width="113"/>
         <Label Content="Abwesend seit:" HorizontalAlignment="Left" Margin="366,93,0,0" VerticalAlignment="Top" Height="26" Width="113"/>
@@ -28,5 +28,6 @@
         <DatePicker HorizontalAlignment="Left" Margin="479,95,0,0" VerticalAlignment="Top" x:Name="AbwesendSeit"/>
         <DatePicker HorizontalAlignment="Left" Margin="479,145,0,0" VerticalAlignment="Top" x:Name="AbwesendBis"/>
         <TextBox TextWrapping="Wrap" Margin="479,14,42,203" x:Name="ID"/>
+        <Label Content="Version: 0.9.0 Beta" HorizontalAlignment="Left" Margin="548,216,0,0" VerticalAlignment="Top" Width="83" Height="22" FontSize="9"/>
     </Grid>
 </Window>
