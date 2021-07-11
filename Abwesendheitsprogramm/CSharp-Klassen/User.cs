@@ -14,33 +14,25 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
         public string Name { get; set; }
         public string Passwort { get; set; }
 
-        public string Abwesend { get; set; }
+        public bool Abwesend { get; set; }
         public string AbwesendSeit { get; set; }
 
         public string AbwesendBis { get; set; }
 
         //Methoden zur Bearbeitung von Abmeldungen
-        public void SetUserAbwesend(string abwesendSeit, string abwesendBis)
-        {
-            Abwesend = "Ja";
-            AbwesendSeit = abwesendSeit;
-            AbwesendBis = abwesendBis;
-            Database database = new Database();
-            database.InsertIntoDatabase("UPDATE user SET istAbwesend = " + this.Abwesend + ", abwesendSeit = " + this.AbwesendSeit + ", abwesendBis = " + this.AbwesendBis + " WHERE id = " + this.ID + ";");
-        }
 
         public void SetAnwesend()
         {
-            if(this.Abwesend == "Nein")
+            if(this.Abwesend == false)
             {
                 MessageBox.Show("Der User ist bereits anwesend.");
                 return;
             }
-            Abwesend = "Nein";
+            Abwesend = false;
             AbwesendSeit = null;
             AbwesendBis = null;
             Database database = new Database();
-            database.InsertIntoDatabase("UPDATE user SET istAbwesend = false, abwesendSeit = null, abwesendBis = null WHERE id = "+ this.ID +";");
+            database.InsertIntoDatabase("UPDATE user SET abwesend = false, abwesendSeit = null, abwesendBis = null WHERE id = "+ this.ID +";");
         }
 
         public void checkObWiederAnwesend()

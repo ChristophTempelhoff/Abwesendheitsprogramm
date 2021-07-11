@@ -33,7 +33,7 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
             {
                 using (MySqlConnection connection = new MySqlConnection(verbindungsdaten))
                 {
-                    return Task.Factory.StartNew( () =>
+                    return Task.Factory.StartNew(() =>
                     {
                         MySqlCommand command = new MySqlCommand(query);
                         command.Connection = connection;
@@ -47,7 +47,7 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
                             int ID = 0;
                             string Name = "";
                             string Passwort = "";
-                            string abwesend = "";
+                            bool abwesend = true;
                             string abwesendSeit = null;
                             string abwesendBis = null;
                             //I know that this is technically quite slow (O(n²)) but I don't know how else I should do it.
@@ -69,33 +69,21 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
                                 {
                                     if (dataReader.GetString(j) == "0")
                                     {
-                                        abwesend = "Nein";
-                                    }
-                                    else
-                                    {
-                                        abwesend = "Ja";
+                                        abwesend = false;
                                     }
                                 }
                                 if (j == 4)
                                 {
-                                    if (!dataReader.IsDBNull(j))
+                                    if (dataReader.GetString(j) != "")
                                     {
-                                       abwesendSeit = dataReader.GetDateTime(j).ToString("dd.MM.yyyy");
-                                    }
-                                    else
-                                    {
-                                        abwesendSeit = null;
+                                        abwesendSeit = dataReader.GetDateTime(j).ToString("dd.MM.yyyy");
                                     }
                                 }
                                 if (j == 5)
                                 {
-                                    if (!dataReader.IsDBNull(j))
+                                    if (dataReader.GetString(j) != "")
                                     {
                                         abwesendBis = dataReader.GetDateTime(j).ToString("dd.MM.yyyy");
-                                    }
-                                    else
-                                    {
-                                        abwesendBis = null;
                                     }
                                 }
                             }
