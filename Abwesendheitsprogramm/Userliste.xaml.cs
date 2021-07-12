@@ -14,17 +14,17 @@ namespace Abwesendheitsprogramm
         public Userliste()
         {
             InitializeComponent();
-            FillDataGridAsync();
+            FillDataGridAsync("SELECT * FROM user");
         }
 
         //This is used to fill the Datagrid
-        async void FillDataGridAsync()
+        async void FillDataGridAsync(string SQLQuery)
         {
             DataGrid dg = CustomerGrid;
             Database db = new Database();
             try
             {
-                List<User> data = await db.GetDataFromDatabase("SELECT * FROM user");
+                List<User> data = await db.GetDataFromDatabase(SQLQuery);
 
                 //checking if a user isn't absent anymore and storing him in a datagrid
                 for (int i = 0; i < data.Count; i++)
@@ -91,10 +91,24 @@ namespace Abwesendheitsprogramm
                 
                 //clear and repopulate the datagrid
                 ClearDataGrid();
-                FillDataGridAsync();
+                FillDataGridAsync("SELECT * FROM user");
                 return;
             }
             MessageBox.Show("Fehler, ID nicht eingetragen.");
+        }
+
+        //sort for absent
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ClearDataGrid();
+            FillDataGridAsync("SELECT * FROM user WHERE abwesend = 1");
+        }
+
+        //sort for everyone
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            ClearDataGrid();
+            FillDataGridAsync("SELECT * FROM user");
         }
     }
 }
