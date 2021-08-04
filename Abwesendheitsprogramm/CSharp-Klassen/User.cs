@@ -33,7 +33,7 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
             AbwesendSeit = null;
             AbwesendBis = null;
             Database database = new Database();
-            database.InsertIntoDatabase("UPDATE user SET abwesend = false, abwesendSeit = null, abwesendBis = null WHERE id = "+ this.ID +";");
+            database.InsertIntoDatabase("UPDATE user SET abwesend = false, abwesendSeit = '', abwesendBis = '' WHERE id = "+ this.ID +";");
         }
 
         public void checkObWiederAnwesend()

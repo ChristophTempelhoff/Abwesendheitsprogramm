@@ -8,11 +8,11 @@
         Title="LogIn" Height="234.375" Width="466.016" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
     <Grid>
         <Label Content="Benutzername:" HorizontalAlignment="Left" Margin="42,54,0,0" VerticalAlignment="Top" FontFamily="Calibri" FontSize="16"/>
-        <TextBox x:Name="Benutzername" HorizontalAlignment="Left" Height="26" Margin="213,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124" FontFamily="Calibri" FontSize="16"/>
+        <TextBox x:Name="Benutzername" HorizontalAlignment="Left" Height="26" Margin="213,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="124" FontFamily="Calibri" FontSize="16" MaxLength="10"/>
         <Label Content="Passwort:" HorizontalAlignment="Left" Margin="42,99,0,0" VerticalAlignment="Top" Width="89" FontFamily="Calibri" FontSize="16"/>
-        <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="213,99,0,0" VerticalAlignment="Top" Width="124" Height="26" FontSize="16" FontFamily="Calibri"/>
+        <PasswordBox x:Name="Password" HorizontalAlignment="Left" Margin="213,99,0,0" VerticalAlignment="Top" Width="124" Height="26" FontSize="16" FontFamily="Calibri" MaxLength="5"/>
         <Button Content="Log in" HorizontalAlignment="Left" Margin="144,151,0,0" VerticalAlignment="Top" Width="137" Height="42" Click="Button_Click"/>
-        <Label Content="Version: 0.9.1 Beta" HorizontalAlignment="Left" Margin="368,174,0,0" VerticalAlignment="Top" Width="82" Height="21" FontSize="9"/>
+        <Label Content="Version: 0.9.2 Beta" HorizontalAlignment="Left" Margin="368,174,0,0" VerticalAlignment="Top" Width="82" Height="21" FontSize="9"/>
 
     </Grid>
 </Window>
