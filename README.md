@@ -1,5 +1,6 @@
 # Abwesend- und Anwesendheitsprogramm in C#
 ## Inhaltsverzeichnis
+- Aktuelle Updates
 - Erklärung und Zusammenfassung
 - Auflistung der Features
 - Erklärung der Features und deren Logik
@@ -7,6 +8,14 @@
 ---
 ### Dieses Konzept kann sich während der Entwicklung noch ändern!!!
 ---
+### Aktuelle Updates
+- 0.9.2
+  - Knopf zum aktualisieren der Daten in der Useranzeige
+  - Die Datenbank kann nun nichtmehr zugespamt werden, Limit momentan bei 1 Request alle 20s
+- 0.9.1
+  - Knöpfe zur Sortierung zwischen Abwesend und Allen
+- 0.9.0
+  - Start des Projekts
 ### Erklärung und Zusammenfassung
 #### Erklärung <br>
 Dieses Programm soll die längerfristige Abwesenheit von Usern dokumentieren. Dies soll
