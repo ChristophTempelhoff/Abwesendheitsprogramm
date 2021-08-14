@@ -26,6 +26,7 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
             }
         }
 
+        //Gets the absent-state from the table in the db
         public Task<List<Abwesendheiten>> GetAbsentsFromDatabase(string Query)
         {
             string verbindungsdaten;
@@ -135,6 +136,7 @@ namespace Abwesendheitsprogramm.CSharp_Klassen
             }
         }
 
+        //gets the user from the table in the db
         public Task<List<User>> GetUserFromDatabase(string Query)
         {
             string verbindungsdaten;
