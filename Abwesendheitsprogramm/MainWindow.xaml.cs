@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Abwesendheitsprogramm.CSharp_Klassen;
+using System.Collections.Generic;
 using System.Text;
 using System.Windows;
-using Abwesendheitsprogramm.CSharp_Klassen;
 
 namespace Abwesendheitsprogramm
 {
@@ -19,7 +19,7 @@ namespace Abwesendheitsprogramm
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             Database db = new Database();
-            List<User> data = await db.GetDataFromDatabase("SELECT * FROM user WHERE name = '" + Benutzername.Text + "'");
+            List<User> data = await db.GetUserFromDatabase("SELECT * FROM users WHERE name = '" + Benutzername.Text + "'");
             for (int i = 0; i < data.Count; i++)
             {
                 if (hashPasswords.CreateMD5(Password.Password.ToString()) == data[i].Passwort)

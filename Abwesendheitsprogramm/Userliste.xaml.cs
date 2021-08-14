@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Abwesendheitsprogramm.CSharp_Klassen;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using Abwesendheitsprogramm.CSharp_Klassen;
-using System.Threading.Tasks;
 
 namespace Abwesendheitsprogramm
 {
@@ -19,17 +18,20 @@ namespace Abwesendheitsprogramm
         public Userliste()
         {
             InitializeComponent();
-            FillDataGridAsync("SELECT * FROM user");
+            FillDataGridAsync("SELECT * FROM users", "SELECT * FROM abwesendheit");
         }
 
         //This is used to fill the Datagrid
-        async void FillDataGridAsync(string SQLQuery)
+        async void FillDataGridAsync(string userQuery, string absentQuery)
         {
             DataGrid dg = CustomerGrid;
             Database db = new Database();
+            WholeAbsenty wA = new WholeAbsenty();
             try
             {
-                List<User> data = await db.GetDataFromDatabase(SQLQuery);
+                List<User> users = await db.GetUserFromDatabase(userQuery);
+                List<Abwesendheiten> absents = await db.GetAbsentsFromDatabase(absentQuery);
+                List<WholeAbsenty> data = wA.addTogether(users, absents);
 
                 //checking if a user isn't absent anymore and storing him in a datagrid
                 for (int i = 0; i < data.Count; i++)
@@ -89,14 +91,14 @@ namespace Abwesendheitsprogramm
                 }
 
                 //Storing the data in the database
-                database.InsertIntoDatabase("UPDATE user SET abwesend = " + abwesend.ToString() + ", abwesendSeit = '" + abwesendSeit + "', abwesendBis = '" + abwesendBis + "' WHERE id = " + id + ";");
+                database.InsertIntoDatabase("UPDATE abwesendheit SET abwesend = " + abwesend.ToString() + ", abwesendSeit = '" + abwesendSeit + "', abwesendBis = '" + abwesendBis + "' WHERE userId = " + id + ";");
 
                 //giving the user feedback
                 MessageBox.Show("Erfolgreich durchgeführt");
 
                 //clear and repopulate the datagrid
                 ClearDataGrid();
-                FillDataGridAsync("SELECT * FROM user");
+                FillDataGridAsync("SELECT * FROM users", "SELECT * FROM abwesendheit");
                 return;
             }
             MessageBox.Show("Fehler, ID nicht eingetragen.");
@@ -107,7 +109,7 @@ namespace Abwesendheitsprogramm
         {
             if (!setToAbwesend)
             {
-                RefreshData("SELECT * FROM user WHERE abwesend = 1");
+                RefreshData("SELECT * FROM users", "SELECT * FROM abwesendheit WHERE abwesend = 1");
                 setToAbwesend = true;
                 amountRefreshed++;
             }
@@ -118,21 +120,21 @@ namespace Abwesendheitsprogramm
         {
             if (setToAbwesend)
             {
-                RefreshData("SELECT * FROM user");
+                RefreshData("SELECT * FROM users", "SELECT * FROM abwesendheit");
                 setToAbwesend = false;
                 amountRefreshed++;
             }
         }
 
         //function to refresh the datagrid every x miliseconds
-        private void RefreshData(string SQLQuery)
+        private void RefreshData(string userQuery, string absentQuery)
         {
             if ((int)DateTime.Now.Subtract(start).TotalSeconds != 0)
             {
                 if (amountRefreshed / (int)DateTime.Now.Subtract(start).TotalSeconds < 1)
                 {
                     ClearDataGrid();
-                    FillDataGridAsync(SQLQuery);
+                    FillDataGridAsync(userQuery, absentQuery);
                     return;
                 }
                 MessageBox.Show("Du versuchst es zu schnell, bitte sei etwas langsamer.");
@@ -147,10 +149,10 @@ namespace Abwesendheitsprogramm
             amountRefreshed++;
             if (setToAbwesend)
             {
-                RefreshData("SELECT * FROM user WHERE abwesend = 1");
+                RefreshData("SELECT * FROM users", "SELECT * FROM abwesendheit WHERE abwesend = 1");
                 return;
             }
-            RefreshData("SELECT * FROM user");
+            RefreshData("SELECT * FROM users", "SELECT * FROM abwesendheit");
         }
     }
 }
